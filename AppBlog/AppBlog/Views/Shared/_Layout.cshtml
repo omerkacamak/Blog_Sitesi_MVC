@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AppBlog</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    
+    
+            @RenderBody()
+       
+
+   
+    
+</body>
+<script>
+
+   
+    $(".popup-btn").click(function (e) {
+  e.preventDefault();
+  var linkID = this.hash.replace("#", "");
+  $(".modal").each(function () {
+    var modalID = $(this).attr("id");
+    if (linkID === modalID) {
+      $(this).fadeIn(200);
+      $("body, html").addClass("modal-open");
+      $(".modal-backdrop").addClass("in");
+      $(this).addClass("in");
+    } else {
+      $(this).fadeOut();
+      $(this).removeClass("in");
+    }
+  });
+});
+$("body, button.close, .modal-footer button.btn").click(function () {
+  $("body, html").removeClass("modal-open");
+  $(".modal-backdrop").removeClass("in");
+  $(".modal").fadeOut();
+  $(".modal").removeClass("in");
+});
+$(".modal-content, .popup-btn, .modal-header .close, .modal-footer .btn").click(
+  function (e) {
+    e.stopPropagation();
+  }
+);
+
+</script>
+@await RenderSectionAsync("Scripts", required: false)
+
+
+</html>

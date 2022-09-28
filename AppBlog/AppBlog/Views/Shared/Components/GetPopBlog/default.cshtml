@@ -1,0 +1,23 @@
+﻿@using Datam.Models
+@model List<Blog>
+
+@{
+    var sayac = 1;
+}
+    
+
+@foreach (var item in Model.Take(10))
+{
+      
+
+                                <li>
+                                    <a href="/Blog/Home/Index/@item.BlogID">
+                                        <span class="number">@sayac</span>
+                                        <h3>@item.BlogTitle</h3>
+                                        <span class="author">@item.Writer.WriterName</span>
+                                    </a>
+                                </li>
+                               
+                                sayac++;
+                            
+}

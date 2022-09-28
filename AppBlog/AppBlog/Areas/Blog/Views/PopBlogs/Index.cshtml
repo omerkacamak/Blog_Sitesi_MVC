@@ -1,0 +1,83 @@
+﻿@using Datam.Models
+@model List<Blog>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AnaLayout.cshtml";
+}
+<div class="page-header text-center">
+
+    <h1>  <small>Popüler Bloglar</small>  </h1>
+
+</div>
+
+<section class="wrapper">
+    <div class="container-fostrap">
+
+        <div class="content">
+            <di class="container">
+                <div class="row mb-5">
+                    @foreach (var item2 in Model)
+                    {
+
+                        <div class="col-xs-12 col-sm-4">
+                            <div class="card text-center mb-5">
+                                <a class="img-card" href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html">
+                                    <img src="https://1.bp.blogspot.com/-Bii3S69BdjQ/VtdOpIi4aoI/AAAAAAAABlk/F0z23Yr59f0/s640/cover.jpg" />
+                                </a>
+                                <div class="card-content">
+                                    <h4 class="card-title text-center">
+                                        <a href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html">
+                                            @item2.BlogTitle
+                                        </a>
+                                    </h4>
+                                    <p class="text-center">
+                                        @item2.BlogContent.Substring(0,30)...
+                                    </p>
+                                </div>
+
+                                <a href="/Writer/Other/Index/@item2.WriterID" class="badge bg-primary rounded">@item2.Writer.WriterName</a>
+                                <span class="badge bg-danger rounded ">@item2.Category.CategoryName</span>
+
+                                <a href="/Blog/Home/Index/@item2.BlogID" class="badge bg-success rounded ">Devamını Oku</a> <hr>
+                                <div id="begeen" gscript=@item2.BlogID onclick="">
+                                    <a onclick="begen(2,@item2.BlogID)" class="badge bg-success rounded mx-4 begen" id="begexn"> <i class="far fa-thumbs-up me-2"></i>Beğen</a>
+                                    <a class="badge bg-danger rounded mx-4">@item2.Begeni</a>
+
+                                </div>
+                                <div class="text-muted fs-2 ms-auto ">@item2.BlogCreateDate</div>
+                            </div>
+                        </div>
+
+                    }
+
+
+                </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+
+
+
+
+
+@section scripts{
+    <script>
+
+        function begen(wid, bid) {
+
+            $.ajax({
+                type: "POST",
+                url: "/Blog/Home/Begeni?wid=" + wid + "?bid=" + bid
+
+                                success: function(func) {
+
+                    $(".row").load(" .row > *");
+
+
+                }
+            });
+        }
+    </script>
+                            }

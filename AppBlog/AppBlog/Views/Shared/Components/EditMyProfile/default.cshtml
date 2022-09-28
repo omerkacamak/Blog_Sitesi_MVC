@@ -1,0 +1,95 @@
+﻿@using Datam.Models
+@model Writer
+
+
+
+
+
+<div class="contasiner">
+<div class="row gutters">
+<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+<div class="card h-100">
+	<div class="card-body">
+		<div class="account-settings">
+			<div class="user-profile">
+				<div class="user-avatar">
+					<img class="w-50	" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+				</div>
+				<h5 class="user-name">Yuki Hayashi</h5>
+				<h6 class="user-email">yuki@Maxwell.com</h6>
+			</div>
+			<div class="about">
+				<h5>About</h5>
+				<p>I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful and human experiences.</p>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+<div class="card h-100">
+	<div class="card-body">
+		<div class="row gutters">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+				<h6 class="mb-2 text-primary">Personal Details</h6>
+			</div>
+			@using (Html.BeginForm("Index", "Crud", new {area="Writer"}, FormMethod.Post))
+			{
+				<div class="row gutters">
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					@Html.HiddenFor(i=>i.WriterID)
+					@Html.HiddenFor(i=>i.WriterStatus)
+					@Html.HiddenFor(i=>i.WriterID)
+					@Html.Label("İsim")
+					@Html.TextBoxFor(i=>i.WriterName, new{@class="form-control"})
+				</div>
+			</div>
+					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					@Html.Label("Email")
+					@Html.TextBoxFor(i=>i.WriterMail, new{@class="form-control",type="email"})
+				</div>
+			</div>		
+
+
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					@Html.Label("Hakkında")
+					@Html.TextBoxFor(i=>i.WriterAbout, new{@class="form-control"})
+				</div>
+			</div>
+
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					@Html.Label("Şifre")
+					@Html.TextBoxFor(i=>i.WriterPassword, new{@class="form-control",type="password"})
+				</div>
+			</div>
+			
+		<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					@Html.Label("Fotoğraf")
+					@Html.TextBoxFor(i=>i.WriterImage, new{@class="form-control",type="password"})
+				</div>
+			</div>
+		
+		
+		
+		</div>
+
+		<button type="submit" class="btn btn-success">Güncelle</button>
+			}
+			
+			
+			
+			
+		</div>
+		
+		</div>
+		
+	</div>
+</div>
+</div>
+</div>
+</div>

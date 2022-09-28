@@ -1,0 +1,32 @@
+﻿@using Datam.Models
+@model Writer
+
+
+
+<h4> TAKİP EDİLEN LİSTESİ</h4>
+
+
+
+@foreach (var item in Model.Following)
+{
+     <div class="tab-pane fade active show" id="profile-followers">
+                                <div class="list-group">
+                                    <div class="list-group-item d-flex align-items-center">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" width="50px" class="rounded-sm ml-n2" />
+                                        <div class="flex-fill pl-3 pr-3">
+                                            <div><a href="#" class="text-dark font-weight-600">@item.Writerim.WriterName</a></div>
+                                            <div class="text-muted fs-13px">North Raundspic</div>
+                                        </div>
+                                        <a href="#" class="btn btn-outline-primary">Follow</a>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+}
+ <div class="text-center p-3">
+                                    <a href="#" class="text-dark text-decoration-none">Show More <b class="caret"></b></a>
+                                </div>
+
+
+                   

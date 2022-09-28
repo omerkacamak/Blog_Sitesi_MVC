@@ -1,0 +1,17 @@
+﻿@using Datam.Models
+@model Writer
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AnaLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+<h2>@Model.WriterName</h2>
+<h4>Takipçiler</h4>
+<br />
+@foreach (var item in Model.Follower)
+{
+
+    <h3>@item.Follower.WriterName</h3>
+}

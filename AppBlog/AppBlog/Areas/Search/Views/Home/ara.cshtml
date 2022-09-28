@@ -1,0 +1,44 @@
+﻿@using Datam.Models
+@model List<Blog>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/blogLayout.cshtml";
+}
+<div class="container">
+
+<div class="row">
+
+ <div class="col-md-12" data-aos="fade-up">
+            
+            @foreach (var item in Model)
+           {
+               <h3 class="category-title">Kategori: @Model[0].Category.CategoryName</h3>
+                <div class="d-md-flex post-entry-2 half">
+              <a href="#" class="me-4 thumbnail">
+                <img src="~/assets/img/post-landscape-6.jpg" alt="" class="img-fluid">
+              </a>
+              <div>
+                <div class="post-meta"><span class="date">@item.Category.CategoryName</span> <span class="mx-1">&bullet;</span> <span>@item.BlogCreateDate</span></div>
+                <h3><a href="single-post.html">@item.BlogTitle</a></h3>
+                <p>@item.BlogContent.Substring(0,200)... <a href="/Blog/Home/Index/@item.BlogID"> <b> Devamını Oku</b> </a></p>
+                <div class="d-flex align-items-center author">
+                  <div class="photo"><img src="assets/img/person-2.jpg" alt="" class="img-fluid"></div>
+                  <div class="name">
+                    <h3 class="m-0 p-0">@item.Writer.WriterName</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+           }
+           
+
+
+            
+          </div>
+
+          
+
+
+
+</div>
+</div>

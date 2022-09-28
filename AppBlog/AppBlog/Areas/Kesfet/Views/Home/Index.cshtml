@@ -1,0 +1,266 @@
+﻿@using Datam.Models
+@model List<Writer>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/blogLayout.cshtml";
+}
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+<!--STYLE-->
+<style>
+
+    .card-box {
+        padding: 20px;
+        border-radius: 3px;
+        margin-bottom: 30px;
+        background-color: #fff;
+    }
+
+    .social-links li a {
+        border-radius: 50%;
+        color: rgba(121, 121, 121, .8);
+        display: inline-block;
+        height: 30px;
+        line-height: 27px;
+        border: 2px solid rgba(121, 121, 121, .5);
+        text-align: center;
+        width: 30px
+    }
+
+        .social-links li a:hover {
+            color: #797979;
+            border: 2px solid #797979
+        }
+
+    .thumb-lg {
+        height: 88px;
+        width: 88px;
+    }
+
+    .img-thumbnail {
+        padding: .25rem;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        border-radius: .25rem;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .text-pink {
+        color: #ff679b !important;
+    }
+
+    .btn-rounded {
+        border-radius: 2em;
+    }
+
+    .text-muted {
+        color: #98a6ad !important;
+    }
+
+</style>
+
+
+<style>
+
+
+
+
+
+
+
+    .card{
+
+
+     border: none;
+     border-radius: 15px;
+     padding: 8px;
+     background-color: #fff;
+     position: relative;
+
+    }
+
+    .upper{
+
+     height: 100px;
+
+    }
+
+    .upper img{
+
+     width: 100%;
+     border-top-left-radius: 10px;
+     border-top-right-radius: 10px;
+
+    }
+
+    .user{
+     position: relative;
+    }
+
+    .profile img{
+
+
+     height: 80px;
+     width: 80px;
+     margin-top:2px;
+
+
+    }
+
+    .profile{
+
+     position: absolute;
+     top:-50px;
+     left: 38%;
+     height: 90px;
+     width: 90px;
+     border:3px solid #fff;
+
+     border-radius: 50%;
+
+    }
+
+    .follow{
+
+     border-radius: 15px;
+     padding-left: 20px;
+     padding-right: 20px;
+     height: 35px;
+    }
+
+    .stats span{
+
+     font-size: 29px;
+    }
+</style>
+
+<!-- END STYLE-->
+@await Component.InvokeAsync("UstSlideBar")
+
+@await Component.InvokeAsync("HaftaninBlogu")
+
+
+<!--YAZARLAR-->
+
+<div class="container" data-aos="fade-up">
+    <div class="section-header d-flex justify-content-between align-items-center mb-5">
+        <h2>Yazarlara Göz Atın - <span class="date text-muted">Writer Name</span></h2>
+        <div><a href="category.html" class="more"></a></div>
+    </div>
+</div>
+<div class="container d-flex align-items-center" data-aos="fade-up">
+
+    <div class="row" id="refresh">
+        @foreach (var item in Model.Take(8))
+        {
+            <div class="col-3">
+                <div class="card">
+
+                    <div class="upper">
+
+                        <img src="@item.WriterImage" class="img-fluid">
+
+                    </div>
+
+                    <div class="user text-center">
+
+                        <div class="profile">
+
+                            <img src="https://i.imgur.com/JgYD2nQ.jpg" class="rounded-circle" width="80">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="mt-5 text-center" id="">
+
+                        <h4 class="mb-0"><a href="/Writer/Other/Index/@item.WriterID">@item.WriterName</a></h4>
+                        <span class="text-muted d-block mb-2">@item.Roles.RoleName</span>
+                       @if(User.Identity.IsAuthenticated)
+                        {
+                             <div id=""> 
+                             @if (item.Follower.Any(i => i.FollowerId == ViewBag.userid))
+                        {
+                            <button onclick="takipcik(@item.WriterID)" class="btn btn-primary btn-sm follow">Takipten Çıkar</button>
+                        }
+                        else
+                        {
+                            <button onclick="takipet(@item.WriterID)" class="btn btn-primary btn-sm follow">Takip Et</button>
+                        }
+                        </div>
+                        }
+
+
+
+                        <div class="d-flex justify-content-between align-items-center mt-4 px-4">
+
+                            <div class="stats">
+                                <h6 class="mb-0">Bloglar</h6>
+                                <span>@item.Blogs.Count</span>
+
+                            </div>
+
+
+                            <div class="stats">
+                                <h6 class="mb-0">Takipçi</h6>
+                                <span>@item.Follower.Count</span>
+
+                            </div>
+
+
+                            <div class="stats">
+                                <h6 class="mb-0">Takip</h6>
+                                <span>@item.Following.Count</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+
+
+@section scripts{
+    <script>
+        function takipcik(id) {
+            var form = $('#takip');
+            $.ajax({
+                type: "GET",
+                url: "/Takip/Home/TakiptenCikar/"+id,
+                success: function(data) {
+
+                    $("#refresh").load(" #refresh > *");
+                    //$("#follower").load(" #follower > *");
+
+                }
+            });
+        }
+
+
+        function takipet(id) {
+            var form = $('#takip');
+            $.ajax({
+                type: "GET",
+                url: "/Takip/Home/TakipEt/"+id,
+                success: function(data) {
+
+                    $("#refresh").load(" #refresh > *");
+                    
+
+                }
+            });
+        }
+    </script>
+                                }

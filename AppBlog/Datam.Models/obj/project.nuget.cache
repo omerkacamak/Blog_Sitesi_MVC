@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "jYymWI/pvnuZbQFiJQLJa/VnaO8hgcqrvuA4PpQVOZcVKyq52db83wwc7U0xxejmMvjEqs9N3qyCD1puGAy3QA==",
+  "success": true,
+  "projectFilePath": "c:\\Users\\omerk\\source\\repos\\AppBlog\\Datam.Models\\Datam.Models.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\omerk\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
+    "C:\\Users\\omerk\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
+    "C:\\Users\\omerk\\.nuget\\packages\\system.io.pipelines\\5.0.2\\system.io.pipelines.5.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

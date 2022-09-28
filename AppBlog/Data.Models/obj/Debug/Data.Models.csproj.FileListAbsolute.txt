@@ -1,0 +1,6 @@
+C:\Users\omerk\source\repos\AppBlog\Data.Models\bin\Debug\Data.Models.dll
+C:\Users\omerk\source\repos\AppBlog\Data.Models\bin\Debug\Data.Models.pdb
+C:\Users\omerk\source\repos\AppBlog\Data.Models\obj\Debug\Data.Models.csproj.AssemblyReference.cache
+C:\Users\omerk\source\repos\AppBlog\Data.Models\obj\Debug\Data.Models.csproj.CoreCompileInputs.cache
+C:\Users\omerk\source\repos\AppBlog\Data.Models\obj\Debug\Data.Models.dll
+C:\Users\omerk\source\repos\AppBlog\Data.Models\obj\Debug\Data.Models.pdb

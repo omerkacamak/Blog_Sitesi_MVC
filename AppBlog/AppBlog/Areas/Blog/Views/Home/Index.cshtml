@@ -1,0 +1,107 @@
+﻿@using Datam.Models
+@model Blog
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/blogLayout.cshtml";
+}
+
+
+
+<section class="single-post-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 post-content" data-aos="fade-up">
+
+                <!-- ======= Single Post Content ======= -->
+                <div class="single-post">
+                    <div class="post-meta"><span class="date">@Model.Category.CategoryName</span> <span class="mx-1">&bullet;</span> <span>@Model.BlogCreateDate</span></div>
+                    <h1 class="mb-5">@Model.BlogTitle</h1>
+                    <figure class="my-4">
+                        <img src="~/assets/img/post-landscape-1.jpg" alt="" class="img-fluid">
+                    </figure>
+                    <p><span class="firstcharacter">@Model.BlogContent.Substring(0,1)</span>
+                        @Model.BlogContent.Substring(1,@Model.BlogContent.Length-1)</p>
+
+
+                </div><!-- End Single Post Content -->
+
+
+              <div id="degis" class=" text-muted fs-2 ms-auto mt-2 mt-md-0">
+
+                            <a onclick="begen(@Model.BlogID)" class="btn btn-success begen" id="begexn"> <i class="far fa-thumbs-up me-2"></i>Beğen</a>
+                            <a class="btn btn-danger mx-4">@Model.Begeni</a>
+                        </div>
+
+                @await Component.InvokeAsync("CommentListByBlog",new{id=@Model.BlogID})
+                @await Component.InvokeAsync("AddComment",new{blogid=@Model.BlogID})
+
+                <!-- ======= Comments ======= -->
+               <!-- End Comments -->
+                <!-- ======= Comments Form ======= -->
+                <!-- End Comments Form -->
+
+            </div>
+            <!--Sağ Bar-->
+            @await Component.InvokeAsync("ApiBar")
+            @*@await Html.PartialAsync("PartialWeather")*@
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br />
+@*@await Component.InvokeAsync("CommentListByBlog",new{id=@Model.BlogID});*@
+
+
+
+
+
+@section Scripts{
+    <script>
+        function begen(sid) {
+
+            $.ajax({
+                type: "GET",
+                url: "/Blog/Home/Begeni/" + sid,
+
+                success: function(func) {
+
+                    $("#degis").load(" #degis > *");
+
+
+                }
+            });
+        }
+
+
+    </script>
+          }           

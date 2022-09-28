@@ -1,0 +1,45 @@
+﻿@using Datam.Models
+@model Blog
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/blogLayout.cshtml";
+}
+
+<div class="container">
+
+    <h1>Yeni Yazı</h1>
+
+    @using (Html.BeginForm("Index", "Add", new { area = "Blog" }, FormMethod.Post))
+    {
+        @Html.Label("BAŞLIK")
+        @Html.TextBoxFor(i=>i.BlogTitle,new{@class="form-control"})
+        @Html.ValidationMessageFor(i=>i.BlogTitle)
+        @Html.Label("Kategori")
+        @*@Html.TextBoxFor(i=>i.CategoryID,new{@class="form-control"})*@
+        @Html.DropDownListFor(x=>x.CategoryID,(List<SelectListItem>)ViewBag.cv,new{@class="form-control"})
+        @Html.ValidationMessageFor(i=>i.CategoryID)
+        @Html.Label("İçerik")
+        @Html.TextAreaFor(i=>i.BlogContent,15,3,new{@class="form-control",id="editor"})
+        @Html.ValidationMessageFor(i=>i.BlogContent)
+        
+        <label for="exampleFormControlFile1">Example file input</label>
+        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        <button type="submit" class="btn btn-success">Kaydet</button>
+    }
+</div>
+
+
+
+
+<br />
+
+
+@section scripts{
+    <script>
+        tinymce.init({
+            selector: 'textarea#editor',
+            menubar: false,
+            height: 500
+        });
+    </script>
+}

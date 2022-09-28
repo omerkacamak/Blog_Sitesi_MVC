@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AppBlog</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/modall.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+    
+        <a href="#modal" class="popup-btn">YAZAR OL!</a>
+
+<div id="modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+        <h4 class="modal-title">Modal Title</h4>
+      </div>
+      <div class="modal-body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc laoreet egestas justo, in scelerisque nisi facilisis vel. Maecenas convallis magna vitae dui efficitur, a tincidunt diam cursus. Fusce malesuada ligula elit, id ornare elit mattis nec. Etiam scelerisque eu tellus tincidunt tincidunt. Sed facilisis lacinia auctor. Nullam a molestie neque, pretium cursus turpis.</p>
+        <p>Aliquam non pulvinar nunc, id tristique magna. Donec tempor vehicula urna ut semper. Suspendisse eget commodo magna, eu tincidunt diam. Maecenas dapibus urna ornare, sagittis quam vel, convallis eros. Praesent eu nibh sit amet turpis fermentum auctor. Integer consectetur mi nec leo mollis tempor. Sed semper massa eros, quis elementum ligula suscipit in. Maecenas sed nibh ac arcu rhoncus pharetra.</p>
+        <input type="text" placeholder="name" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn">Close</button>
+        <a href="/HomePage/Home/Index" type="button" class="btn">aaa</a>
+      </div>
+    </div>
+  </div>
+</div>
+    
+       
+
+   
+    
+</body>
+<script>
+    $(".popup-btn").click(function (e) {
+  e.preventDefault();
+  var linkID = this.hash.replace("#", "");
+  $(".modal").each(function () {
+    var modalID = $(this).attr("id");
+    if (linkID === modalID) {
+      $(this).fadeIn(200);
+      $("body, html").addClass("modal-open");
+      $(".modal-backdrop").addClass("in");
+      $(this).addClass("in");
+    } else {
+      $(this).fadeOut();
+      $(this).removeClass("in");
+    }
+  });
+});
+$("body, button.close, .modal-footer button.btn").click(function () {
+  $("body, html").removeClass("modal-open");
+  $(".modal-backdrop").removeClass("in");
+  $(".modal").fadeOut();
+  $(".modal").removeClass("in");
+});
+$(".modal-content, .popup-btn, .modal-header .close, .modal-footer .btn").click(
+  function (e) {
+    e.stopPropagation();
+  }
+);
+
+</script>
+
+
+
+</html>
+

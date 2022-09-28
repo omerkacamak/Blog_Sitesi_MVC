@@ -1,0 +1,40 @@
+﻿@using Datam.Models
+@model Blog
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/blogLayout.cshtml";
+}
+
+<h1>Düzenle</h1>
+
+@using (Html.BeginForm("Update", "Crud", new {area="Blog"}, FormMethod.Post))
+{   
+    @Html.Label("BAŞLIK")
+    @Html.TextBoxFor(i=>i.BlogTitle,new{@class="form-control"})
+    @Html.LabelFor(x=>x.CategoryID)
+    @Html.TextBoxFor(i=>i.CategoryID,new{@class="form-control"})
+     @Html.LabelFor(x=>x.BlogContent)
+    @Html.TextAreaFor(i=>i.BlogContent,new{@class="form-control",id="editor"})
+    @Html.HiddenFor(i=>i.WriterID)
+    @Html.HiddenFor(i=>i.BlogStatus)
+    @Html.HiddenFor(i=>i.BlogCreateDate)
+    @Html.HiddenFor(i=>i.BlogID)
+    <button type="submit" class="btn btn-success">Kaydet</button>
+}
+
+
+                      
+
+
+<br />
+
+
+@section scripts{
+    <script>
+  tinymce.init({
+    selector: 'textarea#editor',
+    menubar: false,
+    height:500
+  });
+</script>
+}

@@ -1,0 +1,43 @@
+﻿@using Datam.Models
+@model List<Category>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AnaLayout.cshtml";
+} 
+ 
+<div class="containexr">
+    <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-ox">
+                            <h3 class="box-title">KATEGORİLER</h3>
+                            
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0">ID</th>
+                                            <th class="border-top-0">Kategori Adı</th>
+                                            <th class="border-top-0">Kategori Durumu</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                       {
+                                           <tr>
+                                            <td>@item.CategoryID</td>
+                                            <td>@item.CategoryName</td>
+                                            <td>@item.CategoryStatus</td>
+                                            
+                                        </tr>
+                                       }
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+</div>
+
+

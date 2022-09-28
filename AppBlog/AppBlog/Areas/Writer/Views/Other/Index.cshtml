@@ -1,0 +1,174 @@
+﻿@using Datam.Models
+@model Writer
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/blogLayout.cshtml";
+}
+
+
+
+
+<section id="as" class="h-100 gradient-custom-2" style="margin-top:0px;">
+    <div class="contaixner  h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col ">
+                <div class="card">
+                    <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:200px;">
+                        <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                                 alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
+                                 style="width: 150px; z-index: 1">
+
+                           @if(User.Identity.IsAuthenticated)
+                            {
+                                 <div id="takip" style="z-index:1">
+                                @if (Model.Follower.Any(i => i.FollowerId == ViewBag.userid))
+                                {
+
+                                    <button onclick="takipcik()" type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark"
+                                        style="z-index: 1;">
+                                        Takipten Çıkar
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button onclick="takipet()" type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark"
+                                        style="z-index: 1;">
+                                        Takip Et
+                                    </button>
+                                }
+                            </div>
+                            }
+
+
+
+
+
+
+
+                        </div>
+                        <div class="ms-3" style="margin-top: 130px;">
+                            <h5>
+                                @Model.WriterName
+                                @if (Model.RoleId == 1)
+                                {
+                                    <span>(Yazar)</span>
+                                }
+                                else if (Model.RoleId == 2)
+                                {
+                                    <span>(Normal)</span>
+                                }
+                            </h5>
+                            <p>@Model.WriterAbout</p>
+                        </div>
+                    </div>
+                    <div id="follower" class="p-4 text-black" style="background-color: #f8f9fa;">
+                        <div class="d-flex justify-content-end text-center py-1">
+                            <div>
+                                <p class="mb-1 h5">@Model.Blogs.Count</p>
+                                <a type="button" onclick="getBlog()" class="small text-muted mb-0">Bloglar</a>
+                            </div>
+                            <div id="s" class="px-3">
+                                <p class="mb-1 h5">
+                                    @Model.Follower.Count
+                                </p>
+                                <a type="button" onclick="getFollower()" class="small text-muted mb-0">Takipçi</a>
+                            </div>
+                            <div>
+                                <p class="mb-1 h5">@Model.Following.Count</p>
+                                <a type="button" onclick="getFollowing()" class="small text-muted mb-0">Takip Edilen</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Button trigger modal -->
+
+
+
+
+
+
+
+<div id="component">
+
+      @Html.Partial("_PartialWritersBlog",Model);
+     
+ 
+</div>
+
+
+
+
+@section scripts
+    {
+
+    <script>
+
+
+       
+        function getFollower() {
+            $.ajax({
+                type: "GET",
+                url: "/Writer/Other/PartialGetFollower/@Model.WriterID",
+                success: function(data) {
+                    document.getElementById("component").innerHTML = data;
+                }
+            });
+        }
+        function getFollowing() {
+            $.ajax({
+                type: "GET",
+                url: "/Writer/Other/PartialGetFollowing/@Model.WriterID",
+                success: function(data) {
+                    document.getElementById("component").innerHTML = data;
+                }
+            });
+        }
+        function getBlog() {
+            $.ajax({
+                type: "GET",
+                url: "/Writer/Other/PartialWritersBlog/@Model.WriterID",
+                success: function(data) {
+                    document.getElementById("component").innerHTML = data;
+                }
+            });
+        }
+
+        function takipet() {
+            var form = $('#takip');
+            $.ajax({
+                type: "GET",
+                url: "/Takip/Home/TakipEt/@Model.WriterID",
+                success: function(data) {
+
+                    $("#takip").load(" #takip > *");
+                    $("#follower").load(" #follower > *");
+
+                }
+            });
+        }
+        function takipcik() {
+            var form = $('#takip');
+            $.ajax({
+                type: "GET",
+                url: "/Takip/Home/TakiptenCikar/@Model.WriterID",
+                success: function(data) {
+
+                    $("#takip").load(" #takip");
+                    $("#follower").load(" #follower > *");
+
+                }
+            });
+        }
+
+    </script>
+}
+
+

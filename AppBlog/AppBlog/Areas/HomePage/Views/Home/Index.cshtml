@@ -1,0 +1,114 @@
+﻿@using Datam.Models
+@model List<Blog>
+@{
+    // ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/blogLayout.cshtml";
+}
+
+
+
+@await Component.InvokeAsync("AnaSlideBar")
+
+
+
+<section id="posts" class="posts">
+    <div class="container" data-aos="fade-up">
+        <div class="row g-5">
+
+            <!--SON BLOGU GETİR SOL TARAF-->
+            <div class="col-lg-4">
+
+                @foreach (var item3 in Model.Take(3))
+                {
+                    <div class="post-entry-1 lg">
+                        <a href="single-post.html"><img src="@item3.BlogThumbnailImage" alt="" class="img-fluid"></a>
+                        <div class="post-meta"><span class="date">@item3.Category.CategoryName</span> <span class="mx-1">&bullet;</span> <span>@item3.BlogCreateDate</span></div>
+                        <h2><a href="single-post.html">@item3.BlogTitle</a></h2>
+                        <p class="mb-4 d-block">@item3.BlogContent.Substring(0,400)... <a href="#">Devamını Oku</a></p>
+
+                        <div class="d-flex align-items-center author">
+                            <div class="photo"><img src="~/assets/img/person-1.jpg" alt="" class="img-fluid"></div>
+                            <div class="name">
+                                <h3 class="m-0 p-0">@item3.Writer.WriterName</h3>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+
+
+            </div>
+            <!--END SON BLOGU GETİR SOL TARAF-->
+            
+            
+            <!--Sağ taraftaki küçük SON blolgar-->
+            <div class="col-lg-5">
+                <div class="row g-5">
+                    @foreach (var item2 in Model.Take(11))
+                    {
+                        @if(item2 == Model[0] || item2 == Model[1] || item2 == Model[2] )
+                        {
+                            continue;
+                        }
+
+
+
+
+                        else
+                        {
+                            <div class="col-lg-6 border-start custom-border">
+
+                            <div class="post-entry-1">
+                                <a href="/Blog/Home/Index/@item2.BlogID"><img src="assets/img/post-landscape-2.jpg" alt="" class="img-fluid"></a>
+
+                            </div>
+                            <h2 class="text-center"><a href="/Blog/Home/Index/@item2.BlogID">@item2.BlogTitle</a></h2>
+                            <p class="mb-4 d-block text-center">
+                                @item2.BlogContent.Substring(0,40)...
+                                <a class="" href="/Blog/Home/Index/@item2.BlogID"> <b> Devamını Oku</b></a>
+                            </p>
+                            <div class="post-meta text-center">
+                                <a href="/Writer/Other/Index/@item2.WriterID" class="date">@item2.Writer.WriterName</a> <span class="mx-1">&bullet;</span>
+                                <span class="date">@item2.Category.CategoryName</span>
+                                <br>
+                                <span>@item2.BlogCreateDate.ToLongDateString()</span>
+
+                            </div>
+
+
+                            <hr>
+
+
+
+
+                        </div>
+                        }
+
+
+                    }
+
+
+
+                </div>
+            </div>
+            <!-- End Sağ taraftaki küçük SON blolgar-->
+            
+            
+            
+            <!--HAVA VE HABERLER-->
+            @await Component.InvokeAsync("CallWeatherNews")
+             <!--HAVA VE HABERLER-->
+
+
+
+
+        </div> 
+    </div>
+</section> 
+
+@await Component.InvokeAsync("IlginiziCekebilir")
+
+
+
+<!-- Diğer -->

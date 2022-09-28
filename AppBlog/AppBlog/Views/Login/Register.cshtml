@@ -1,0 +1,80 @@
+﻿@using Datam.Models
+@model Writer
+
+
+
+
+
+@using (Html.BeginForm("Register","Login",FormMethod.Post))
+{
+    <section class="" style="background-color: #508bfc;">
+  <div class="container py-5 ">
+    <div class="row d-flex justify-content-center align-items-center ">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+
+            <h3 class="mb-5">Kayıt Ol</h3>
+
+            <div class="form-outline mb-4">
+             
+              @Html.TextBoxFor(i=>i.WriterName, new{@class="form-control form-control-lg"})
+              @Html.ValidationMessageFor(i=>i.WriterName)
+             @Html.Label("İsim")
+            </div>
+
+            <div class="form-outline mb-4">
+              @Html.TextBoxFor(i=>i.WriterLastName, new{@class="form-control form-control-lg"})
+               @Html.ValidationMessageFor(i=>i.WriterLastName)
+              <label class="form-label" for="typePasswordX-2">Soyisim</label>
+            </div>
+             <div class="form-outline mb-4">
+              @Html.TextBoxFor(i=>i.WriterMail, new{@class="form-control form-control-lg"})
+               @Html.ValidationMessageFor(i=>i.WriterMail)
+              <label class="form-label" for="typePasswordX-2">Email</label>
+            </div>
+
+             <div class="form-outline mb-4">
+              @Html.TextBoxFor(i=>i.NickName, new{@class="form-control form-control-lg"})
+               @Html.ValidationMessageFor(i=>i.NickName)
+              <label class="form-label" for="typePasswordX-2">Kullanıcı Adı</label>
+            </div>
+
+             <div class="form-outline mb-4">
+              @Html.TextBoxFor(i=>i.WriterPassword, new{@class="form-control form-control-lg"})
+               @Html.ValidationMessageFor(i=>i.WriterPassword)
+              <label class="form-label" for="typePasswordX-2">Şifre</label>
+            </div>
+
+             <div class="form-outline mb-4">
+              @Html.TextBoxFor(i=>i.WriterAbout, new{@class="form-control form-control-lg"})
+               @Html.ValidationMessageFor(i=>i.WriterAbout)
+              <label class="form-label" for="typePasswordX-2">Hakknıda</label>
+            </div>
+
+            <!-- Checkbox -->
+            <div class="form-check d-flex justify-content-start mb-4">
+              <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
+              <label class="form-check-label" for="form1Example3"> Remember password </label>
+            </div>
+
+         
+
+            <hr class="my-4">
+
+            <button class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;"
+              type="submit"><i class="fab fa-google me-2"></i> Kayıt Ol</button>
+              
+            <a href="/Login/Index" class="btn btn-lg btn-block btn-primary text-white" style="background-color:blue;"
+              type="button"><i class="fab fa-google me-2"></i>Ana Sayfa</a>
+            
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+}
