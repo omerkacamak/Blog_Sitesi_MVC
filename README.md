@@ -1,5 +1,5 @@
 # Blog_Sitesi_MVC
-.Net Core Teknolojisiyle Blog Sitesi
+.Net Core Teknolojisiyle oluşturulan Blog Sitesi
 
 
 
